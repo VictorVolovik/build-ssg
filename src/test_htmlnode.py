@@ -4,15 +4,6 @@ from htmlnode import HTMLNode
 
 
 class TestHTMLNode(unittest.TestCase):
-    def test_props_to_html(self):
-        node = HTMLNode(
-            tag="input",
-            props={"id": "fullName", "name": "fullName", "type": "text"},
-        )
-        props = node.props_to_html()
-        expected = 'id="fullName" name="fullName" type="text"'
-        self.assertEqual(props, expected)
-
     def test_repr(self):
         node = HTMLNode(
             tag="ul",
@@ -29,6 +20,35 @@ class TestHTMLNode(unittest.TestCase):
         self.assertIsNone(node.value)
         self.assertIsNone(node.children)
         self.assertIsNone(node.props)
+
+    def test_props_to_html(self):
+        node = HTMLNode(
+            tag="input",
+            props={"id": "fullName", "name": "fullName", "type": "text"},
+        )
+        html_props = node.props_to_html()
+        expected = ' id="fullName" name="fullName" type="text"'
+        self.assertEqual(html_props, expected)
+
+    def test_props_to_html_defaults(self):
+        node = HTMLNode(tag="p", value="test")
+        html_props = node.props_to_html()
+        excepted = ""
+        self.assertEqual(html_props, excepted)
+
+    def test_props_to_html_empty(self):
+        node = HTMLNode(tag="p", value="test", props={})
+        html_props = node.props_to_html()
+        excepted = ""
+        self.assertEqual(html_props, excepted)
+
+    def test_props_to_html_no_prop_value(self):
+        node = HTMLNode(
+            tag="button", value="test", props={"class": "test", "disabled": ""}
+        )
+        html_props = node.props_to_html()
+        excepted = ' class="test" disabled'
+        self.assertEqual(html_props, excepted)
 
 
 if __name__ == "__main__":

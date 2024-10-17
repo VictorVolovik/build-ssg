@@ -29,6 +29,14 @@ class TestLeafNode(unittest.TestCase):
         html = node.to_html()
         expected = '<button class="btn" type="submit">test</button>'
         self.assertEqual(html, expected)
+    
+    def test_to_html_with_emty_value(self):
+        node = LeafNode(
+            tag="img", value="", props={"src": "/test.png", "alt": "test"}
+        )
+        html = node.to_html()
+        expected = '<img src="/test.png" alt="test" />'
+        self.assertEqual(html, expected)
 
 
 if __name__ == "__main__":

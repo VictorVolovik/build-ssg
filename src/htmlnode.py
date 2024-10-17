@@ -12,14 +12,7 @@ class HTMLNode:
         if self.props is None or len(self.props) == 0:
             return ""
 
-        return " " + " ".join(
-            list(
-                map(
-                    prop_to_html,
-                    self.props.items(),
-                )
-            )
-        )
+        return " " + " ".join(list(map(prop_to_html, self.props.items())))
 
     def __repr__(self):
         return f"HTMLNode(tag: {self.tag}, value: {self.value}, children: {self.children}, props: {self.props})"

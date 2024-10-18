@@ -122,7 +122,7 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("test", TextType.IMAGE, "/test.png")
         html_node = text_node_to_html_node(node)
         html = html_node.to_html()
-        expected = '<img src="/test.png" alt="test" />'
+        expected = '<img src="/test.png" alt="test">'
         self.assertEqual(html, expected)
 
 

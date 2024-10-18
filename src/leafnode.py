@@ -1,5 +1,7 @@
 from htmlnode import HTMLNode
 
+HTML_VOID_ELEMENTS_USED_IN_MD = ["hr", "img"]
+
 
 class LeafNode(HTMLNode):
     def __init__(self, value, tag=None, props=None):
@@ -14,8 +16,8 @@ class LeafNode(HTMLNode):
 
         html = (
             f"<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>"
-            if len(self.value) != 0
-            else f"<{self.tag}{self.props_to_html()} />"
+            if self.tag not in HTML_VOID_ELEMENTS_USED_IN_MD
+            else f"<{self.tag}{self.props_to_html()}>"
         )
 
         return html

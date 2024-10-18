@@ -47,8 +47,8 @@ class TestParentNode(unittest.TestCase):
             props={"class": "text"},
         )
         html = node.to_html()
-        excepted = '<div class="text"><p>test1</p><p>test2</p></div>'
-        self.assertEqual(html, excepted)
+        expected = '<div class="text"><p>test1</p><p>test2</p></div>'
+        self.assertEqual(html, expected)
 
     def test_nested_children_to_html(self):
         node = ParentNode(
@@ -71,8 +71,8 @@ class TestParentNode(unittest.TestCase):
             ],
         )
         html = node.to_html()
-        excepted = '<main><div class="text"><p>test1</p><p>test2</p></div><ul><li>item</li></ul></main>'
-        self.assertEqual(html, excepted)
+        expected = '<main><div class="text"><p>test1</p><p>test2</p></div><ul><li>item</li></ul></main>'
+        self.assertEqual(html, expected)
 
 
 if __name__ == "__main__":

@@ -74,6 +74,24 @@ class TestParentNode(unittest.TestCase):
         expected = '<main><div class="text"><p>test1</p><p>test2</p></div><ul><li>item</li></ul></main>'
         self.assertEqual(html, expected)
 
+    def test_multiple_nesting_to_html(self):
+        node = ParentNode(
+            tag="div",
+            children=[
+                ParentNode(
+                    tag="h1",
+                    children=[
+                        LeafNode(
+                            value="This is a heading",
+                        )
+                    ],
+                )
+            ],
+        )
+        html = (node.to_html())
+        expected = "<div><h1>This is a heading</h1></div>"
+        self.assertEqual(html, expected)
+
 
 if __name__ == "__main__":
     unittest.main()

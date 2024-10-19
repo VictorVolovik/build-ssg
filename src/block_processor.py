@@ -2,6 +2,11 @@ import re
 from enum import Enum
 
 
+HEADING_PATTERN = r"^(#{1,6} ).+"
+OREDERED_LIST_LINE_PATTERN = r"^(\d+. ).+"
+OREDERED_LIST_FIRST_LINE_PATTERN = r"^(1. ).+"
+
+
 class BlockType(Enum):
     PARAGRAPH = "paragraph"
     HEADING = "heading"
@@ -25,7 +30,7 @@ def markdown_to_blocks(markdown):
 
 def is_heading_block(block):
     # Headings start with 1-6 # characters, followed by a space and then the heading text
-    matches = re.findall(r"^(#{1,6} ).+", block)
+    matches = re.findall(HEADING_PATTERN, block)
     return len(matches) > 0
 
 
@@ -62,15 +67,13 @@ def is_ordered_list_block(block):
     # Every line in an ordered list block must start with a number followed by a . character and a space
     lines = block.split("\n")
     are_lines_listed = []
-    line_pattern = r"^(\d+. ).+"
-    # The numbers don’t have to be in numerical order, but the list should start with the number one
-    first_line_pattern = r"^(1. ).+"
     for index in range(0, len(lines)):
         line = lines[index]
+        # The numbers don’t have to be in numerical order, but the list should start with the number one
         if index == 0:
-            matches = re.findall(first_line_pattern, line)
+            matches = re.findall(OREDERED_LIST_FIRST_LINE_PATTERN, line)
         else:
-            matches = re.findall(line_pattern, line)
+            matches = re.findall(OREDERED_LIST_LINE_PATTERN, line)
         are_lines_listed.append(len(matches) > 0)
     all_lines_listed = all(are_lines_listed)
     return all_lines_listed

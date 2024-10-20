@@ -1,9 +1,8 @@
-from textnode import TextNode, TextType
+from prepare_static_files import prepare_static_files
 
 
 def main():
-    text_node = TextNode("This is a text node", TextType.BOLD, "https://www.boot.dev")
-    print(text_node.__repr__())
+    prepare_static_files()
 
 
 if __name__ == "__main__":

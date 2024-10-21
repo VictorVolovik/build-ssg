@@ -1,4 +1,7 @@
 import unittest
+import sys
+
+sys.path.append("./src")
 
 from generate_pages import extract_title, generate_page_html
 
@@ -18,7 +21,7 @@ class TestHTMLNode(unittest.TestCase):
             extract_title(md)
 
     def test_generate_page_html(self):
-        html = generate_page_html("src/test.md", "template.html")
+        html = generate_page_html("src/__tests__/test.md", "template.html")
         expected = """<!DOCTYPE html>
 <html>
   <head>

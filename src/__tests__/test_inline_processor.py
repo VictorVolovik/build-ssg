@@ -1,5 +1,7 @@
 import unittest
+import sys
 
+sys.path.append("./src")
 
 from textnode import TextNode, TextType
 from inline_processor import (

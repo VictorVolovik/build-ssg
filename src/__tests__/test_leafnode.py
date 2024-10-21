@@ -1,4 +1,7 @@
 import unittest
+import sys
+
+sys.path.append("./src")
 
 from leafnode import LeafNode
 

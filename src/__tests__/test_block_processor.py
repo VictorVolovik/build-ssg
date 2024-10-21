@@ -1,4 +1,7 @@
 import unittest
+import sys
+
+sys.path.append("./src")
 
 from block_processor import markdown_to_blocks, block_to_block_type, BlockType
 
@@ -54,7 +57,7 @@ npm start
         block_type = block_to_block_type(block)
         expected = BlockType.QUOTE
         self.assertEqual(block_type, expected)
-    
+
     def test_block_to_block_type_multiple_lines_quote(self):
         block = """> This a quote
 > which has
@@ -70,7 +73,7 @@ npm start
         block_type = block_to_block_type(block)
         expected = BlockType.UNORDERED_LIST
         self.assertEqual(block_type, expected)
-    
+
     def test_block_to_block_type_ordered_list(self):
         block = """1. item
 2. which has
@@ -78,8 +81,7 @@ npm start
         block_type = block_to_block_type(block)
         expected = BlockType.ORDERED_LIST
         self.assertEqual(block_type, expected)
-    
-    
+
     def test_block_to_block_type_ordered_list_auto_ordering(self):
         block = """1. item
 1. which has

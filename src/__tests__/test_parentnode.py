@@ -1,4 +1,7 @@
 import unittest
+import sys
+
+sys.path.append("./src")
 
 from parentnode import ParentNode
 from leafnode import LeafNode
@@ -88,7 +91,7 @@ class TestParentNode(unittest.TestCase):
                 )
             ],
         )
-        html = (node.to_html())
+        html = node.to_html()
         expected = "<div><h1>This is a heading</h1></div>"
         self.assertEqual(html, expected)
 

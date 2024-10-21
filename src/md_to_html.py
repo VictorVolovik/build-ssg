@@ -60,7 +60,8 @@ def create_heading(block):
 def create_code(block):
     cleared = block.strip("```")
     children = text_to_children(cleared)
-    return ParentNode(tag="code", children=children)
+    code = ParentNode(tag="code", children=children)
+    return ParentNode(tag="pre", children=[code])
 
 
 def create_quote(block):

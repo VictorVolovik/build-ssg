@@ -22,10 +22,10 @@ npm start
 ```"""
         html_node = markdown_to_html_node(md)
         html = html_node.to_html()
-        expected = """<div><code>
+        expected = """<div><pre><code>
 npm install
 npm start
-</code></div>"""
+</code></pre></div>"""
         self.assertEqual(html, expected)
 
     def test_markdown_to_blocks_with_code_and_quote(self):
@@ -39,10 +39,10 @@ npm start
 """
         html_node = markdown_to_html_node(md)
         html = html_node.to_html()
-        expected = """<div><code>
+        expected = """<div><pre><code>
 npm install
 npm start
-</code><blockquote><p>let's get dangerous</p></blockquote></div>"""
+</code></pre><blockquote><p>let's get dangerous</p></blockquote></div>"""
         self.assertEqual(html, expected)
 
     def test_markdown_to_blocks_with_code_and_multiline_quote(self):
@@ -57,10 +57,10 @@ npm start
 """
         html_node = markdown_to_html_node(md)
         html = html_node.to_html()
-        expected = """<div><code>
+        expected = """<div><pre><code>
 npm install
 npm start
-</code><blockquote><p>The way to get started is to quit talking and begin doing.</p><p>- Walt Disney</p></blockquote></div>"""
+</code></pre><blockquote><p>The way to get started is to quit talking and begin doing.</p><p>- Walt Disney</p></blockquote></div>"""
         self.assertEqual(html, expected)
 
     def test_markdown_to_blocks_with_unordered_list(self):

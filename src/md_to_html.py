@@ -85,8 +85,7 @@ def create_unordered_list(block):
 
 
 def create_ordered_list(block):
-    cleared = block.replace("* ", "").replace("- ", "").replace("+ ", "")
-    lines = cleared.split("\n")
+    lines = block.split("\n")
     children = []
     for line in lines:
         matches = re.findall(OREDERED_LIST_LINE_PATTERN, line)

@@ -23,6 +23,16 @@ class TestLeafNode(unittest.TestCase):
         ]
         self.assertEqual(new_nodes, expected)
 
+    def test_split_nodes_delimiter_for_alternative_bold_text(self):
+        node = TextNode("This is some __bold__ text too", TextType.TEXT)
+        new_nodes = split_nodes_delimiter([node], "__", TextType.BOLD)
+        expected = [
+            TextNode("This is some ", TextType.TEXT),
+            TextNode("bold", TextType.BOLD),
+            TextNode(" text too", TextType.TEXT),
+        ]
+        self.assertEqual(new_nodes, expected)
+
     def test_split_nodes_delimiter_for_italic_text(self):
         node = TextNode("This is some *italic* text", TextType.TEXT)
         new_nodes = split_nodes_delimiter([node], "*", TextType.ITALIC)
@@ -30,6 +40,16 @@ class TestLeafNode(unittest.TestCase):
             TextNode("This is some ", TextType.TEXT),
             TextNode("italic", TextType.ITALIC),
             TextNode(" text", TextType.TEXT),
+        ]
+        self.assertEqual(new_nodes, expected)
+
+    def test_split_nodes_delimiter_for_alternative_italic_text(self):
+        node = TextNode("This is some _italic_ text too", TextType.TEXT)
+        new_nodes = split_nodes_delimiter([node], "_", TextType.ITALIC)
+        expected = [
+            TextNode("This is some ", TextType.TEXT),
+            TextNode("italic", TextType.ITALIC),
+            TextNode(" text too", TextType.TEXT),
         ]
         self.assertEqual(new_nodes, expected)
 

@@ -89,7 +89,9 @@ def split_nodes_link(old_nodes):
 def text_to_textnodes(text):
     initial_node = TextNode(text, TextType.TEXT)
 
-    bold_processed = split_nodes_delimiter([initial_node], "**", TextType.BOLD)
+    links_processed = split_nodes_link([initial_node])
+    images_processed = split_nodes_image(links_processed)
+    bold_processed = split_nodes_delimiter(images_processed, "**", TextType.BOLD)
     alternative_bold_processed = split_nodes_delimiter(
         bold_processed, "__", TextType.BOLD
     )
@@ -102,7 +104,5 @@ def text_to_textnodes(text):
     code_processed = split_nodes_delimiter(
         alternative_italic_processed, "`", TextType.CODE
     )
-    links_processed = split_nodes_link(code_processed)
-    images_processed = split_nodes_image(links_processed)
 
-    return images_processed
+    return code_processed

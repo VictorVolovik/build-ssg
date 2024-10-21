@@ -1,6 +1,8 @@
 import os
 import shutil
 
+from file_helpers import create_folder
+
 
 def prepare_static_files():
     print("Preparing static files...")
@@ -24,14 +26,6 @@ def copy_all_static():
     print("Copying files and folders to /public...")
     create_folder("public")
     copy_files("./static", "./public")
-
-
-def create_folder(path):
-    if not os.path.exists(path):
-        try:
-            os.mkdir(path)
-        except Exception as err:
-            raise Exception("Failed to create new folder:", path, err)
 
 
 def copy_files(src, dst):

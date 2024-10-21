@@ -1,5 +1,6 @@
 import unittest
 import sys
+
 sys.path.append("./src")
 
 from textnode import TextNode, TextType, text_node_to_html_node
@@ -21,11 +22,11 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("This is a text node", TextType.BOLD)
         node2 = TextNode("This is a text node", TextType.BOLD)
         self.assertEqual(node, node2)
-    
+
     def test_no_url_link(self):
         with self.assertRaises(ValueError):
             TextNode("example", TextType.LINK)
-    
+
     def test_no_url_image(self):
         with self.assertRaises(ValueError):
             TextNode("example", TextType.IMAGE)
@@ -33,7 +34,7 @@ class TestTextNode(unittest.TestCase):
     def test_text_node_to_html_node_has_incorrect_node_type(self):
         with self.assertRaises(ValueError):
             text_node_to_html_node("test")
-    
+
     def test_text_node_to_html_node_has_ukknown_node_type(self):
         with self.assertRaises(Exception):
             node = TextNode("This is regular text", "some text")
@@ -117,7 +118,10 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("test", TextType.IMAGE, "/test.png")
         html_node = text_node_to_html_node(node)
         result = html_node.__repr__()
-        expected = "HTMLNode(tag: img, value: "", children: None, props: {'src': '/test.png', 'alt': 'test'})"
+        expected = (
+            "HTMLNode(tag: img, value: "
+            ", children: None, props: {'src': '/test.png', 'alt': 'test'})"
+        )
         self.assertEqual(result, expected)
 
     def test_image_text_node_to_html(self):

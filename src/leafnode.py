@@ -1,6 +1,6 @@
 from htmlnode import HTMLNode
 
-HTML_VOID_ELEMENTS_USED_IN_MD = ["hr", "img"]
+HTML_VOID_ELEMENTS_USED_IN_MD = ["hr", "img", "br"]
 
 
 class LeafNode(HTMLNode):

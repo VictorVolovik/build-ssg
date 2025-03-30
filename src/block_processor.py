@@ -43,7 +43,7 @@ def is_code_block(block):
 def is_quote_block(block):
     # Every line in a quote block must start with a > character
     lines = block.split("\n")
-    are_lines_quoted = list(map(lambda line: line.startswith("> "), lines))
+    are_lines_quoted = list(map(lambda line: line.startswith("> ") or line == ">", lines))
     all_lines_quoted = all(are_lines_quoted)
     return all_lines_quoted
 

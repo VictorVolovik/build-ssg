@@ -66,6 +66,15 @@ npm start
         expected = BlockType.QUOTE
         self.assertEqual(block_type, expected)
 
+    def test_block_to_block_type_empy_line_quote(self):
+        block = """> This a quote
+> which has
+>
+> empty line"""
+        block_type = block_to_block_type(block)
+        expected = BlockType.QUOTE
+        self.assertEqual(block_type, expected)
+
     def test_block_to_block_type_unordered_list(self):
         block = """- item
 * which has

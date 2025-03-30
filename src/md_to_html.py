@@ -9,6 +9,7 @@ from block_processor import (
 )
 from inline_processor import text_to_textnodes
 from parentnode import ParentNode
+from leafnode import LeafNode
 from textnode import text_node_to_html_node
 
 
@@ -68,6 +69,9 @@ def create_quote(block):
     lines = block.split("\n")
     children = []
     for line in lines:
+        if line == ">":
+            children.append(LeafNode(tag="br", value=""))
+            continue
         cleared_line = line.lstrip("> ")
         line_children = text_to_children(cleared_line)
         children.append(ParentNode(tag="p", children=line_children))

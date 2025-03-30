@@ -1,2 +1,8 @@
+# Python cache
 __pycache__/
+
+# Generated content
 public/
+
+# MacOS files
+.DS_Store
